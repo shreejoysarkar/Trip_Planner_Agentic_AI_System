@@ -12,8 +12,31 @@ An AI-powered trip planning system using agentic AI to autonomously create perso
 ## Getting Started
 
 1. Clone the repository.
-2. Install dependencies.
-3. Run the application.
+
+```git clone https://github.com/shreejoysarkar/Trip_Planner_Agentic_AI_System.git
+```
+
+2. Activating Environment.
+
+```
+uv init
+```
+
+```
+uv venv TripGent --python 3.13
+```
+
+```
+TripGent/Scripts/activate
+```
+
+4. Installing Dependencies.
+
+```
+uv pip install -r requirements.txt
+```
+
+
 
 
 
