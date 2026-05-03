@@ -13,7 +13,8 @@ An AI-powered trip planning system using agentic AI to autonomously create perso
 
 1. Clone the repository.
 
-```git clone https://github.com/shreejoysarkar/Trip_Planner_Agentic_AI_System.git
+```
+git clone https://github.com/shreejoysarkar/Trip_Planner_Agentic_AI_System.git
 ```
 
 2. Activating Environment.
