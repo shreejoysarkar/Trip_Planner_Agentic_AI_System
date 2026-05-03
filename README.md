@@ -31,7 +31,7 @@ uv venv TripGent --python 3.13
 TripGent/Scripts/activate
 ```
 
-4. Installing Dependencies.
+3. Installing Dependencies.
 
 ```
 uv pip install -r requirements.txt
