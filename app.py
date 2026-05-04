@@ -10,18 +10,18 @@ st.set_page_config()
 
 
 
-st.title
+st.title("AI Travel Agent")
 
 
 if 'messages' not in st.session_state:
     st.session_state.messages = []
 
-st.header()
+st.header("Welcome to the AI Travel Agent! Plan your next trip with ease.")
 
 
-with st.form():
-    submit_button = ""
-    user_input = ""
+with st.form(key = 'query_form', clear_on_submit=True):
+    user_input = st.text_area("Enter your travel planning query here:", height=150)
+    submit_button = st.form_submit_button(label='Submit')
 
 if submit_button and user_input.strip():
     
