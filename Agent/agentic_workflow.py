@@ -1,11 +1,11 @@
 from utils.model_loader import ModelLoader 
 from prompt_library.prompt import SystemPrompt
 from langgraph.graph import StateGraph, MessagesState, END, START
-from langgraph.prebuild import ToolNode, tools_condition
+from langgraph.prebuilt import ToolNode, tools_condition
 
 from tooools.weather_info_tool import WeatherInfoTool
 from tooools.place_search_tool import PlaceSearchTool
-from tooools.currency_conversion_tool import CurrencyConversionTool
+from tooools.currency_conversion_tool import CurrencyConverterTool
 from tooools.expense_calculator_tool import CalculatorTool
 
 
@@ -13,28 +13,28 @@ from tooools.expense_calculator_tool import CalculatorTool
 class GraphBuilder():
     def __init__(self, model_provider : str = "groq"):
         self.model_provider = model_provider
-        self.llm = self.ModelLoader.load_llm()
+        self.llm = ModelLoader(model_provider=self.model_provider).load_llm()
 
         self.tools = []
         
         self.weather_info_tool = WeatherInfoTool()
         self.place_search_tool = PlaceSearchTool()
-        self.currency_conversion_tool = CurrencyConversionTool()
+        self.currency_conversion_tool = CurrencyConverterTool()
         self.calculator_tool = CalculatorTool()
 
-        self.tools.extend([*self.weather_info_tool.weather_tools_list,
-                            *self.place_search_tool.place_search_tools_list,
-                            *self.currency_conversion_tool.currency_conversion_tools_list,
-                            *self.calculator_tool.calculator_tools_list])
+        self.tools.extend([*self.weather_info_tool.weather_tool_list,
+                            *self.place_search_tool.place_search_tool_list,
+                            *self.currency_conversion_tool.currency_converter_tool_list,
+                            *self.calculator_tool.tools])
         
         self.llm_with_tools = self.llm.bind_tools(tools = self.tools)
         
         self.graph = None
 
 
-        self.system_prompt = SystemPrompt()
+        self.system_prompt = SystemPrompt
 
-    def agent_function(self):
+    def agent_function(self, state: dict):
         """main agent function"""
         user_question = state["messages"]
         input_question = [self.system_prompt] + user_question

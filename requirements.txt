@@ -3,6 +3,7 @@ langchain-community
 langchain-experimental
 fastapi
 python-dotenv
+IPython
 streamlit
 uvicorn
 pydantic
@@ -11,5 +12,6 @@ requests
 langchain-google-community
 langchain-groq
 langgraph
+langchain-tavily
 
 -e .
