@@ -37,8 +37,15 @@ TripGent/Scripts/activate
 uv pip install -r requirements.txt
 ```
 
+4. To run the application:
 
+```
 
+streamlit run app.py
+```
 
+with
 
-
+```
+uvicorn main:app --reload --port 8000
+```
