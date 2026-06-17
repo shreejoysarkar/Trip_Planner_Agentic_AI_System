@@ -2,15 +2,51 @@ import streamlit as st
 import datetime
 import requests
 import sys
+import base64
+from pathlib import Path
 
 BASE_URL = "http://localhost:8000"
 
 
-st.set_page_config()
+st.set_page_config(page_title="AI Travel Agent", page_icon="✈️", layout="centered")
+
+# --- Background Image ---
+def set_background(image_path: str):
+    """Inject a full-page background image via CSS using base64 encoding."""
+    img_bytes = Path(image_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpeg;base64,{encoded}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }}
+
+        /* Semi-transparent overlay so text stays readable */
+        .stApp > header {{
+            background: transparent !important;
+        }}
+
+        .block-container {{
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 16px;
+            padding: 2rem 2rem 3rem 2rem;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+set_background("cf6d18f8cd218a05d1c2c40cf958fa5b.jpg")
 
 
-
-st.title("AI Travel Agent")
+st.title("✈️ AI Travel Agent")
 
 
 if 'messages' not in st.session_state:

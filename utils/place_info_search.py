@@ -1,6 +1,6 @@
 import os
 import json
-from langchain_community.tools.tavily_search import TavilySearchResults
+from langchain_tavily import TavilySearch
 from langchain_google_community import GooglePlacesTool, GooglePlacesAPIWrapper
 
 class GogglePlaceSearchTool:
@@ -69,7 +69,7 @@ class GogglePlaceSearchTool:
         
 class TavilyPlaceSearchTool:
     def __init__(self):
-        self.tool = TavilySearchResults()
+        self.tool = TavilySearch()
 
     def tavily_search_attractions(self, place: str) -> dict:
         """
